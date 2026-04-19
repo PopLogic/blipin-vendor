@@ -1,0 +1,32 @@
+{
+  "@@locale": "en",
+  "startPageTitle": "Blipin! Start your mobile journey!",
+  "@startPageTitle": {
+    "description": "Start page main title"
+  },
+  "startPageEmailLabel": "Email Address",
+  "@startPageEmailLabel": {
+    "description": "Email field label"
+  },
+  "startPageEmailHint": "Please enter your email address",
+  "@startPageEmailHint": {
+    "description": "Email field hint text"
+  },
+  "startPageContinueButton": "Continue",
+  "@startPageContinueButton": {
+    "description": "Continue button text"
+  },
+  "startPageQuickLogin": "Quick Sign In",
+  "@startPageQuickLogin": {
+    "description": "Quick login divider text"
+  },
+  "startPageGoogleButton": "Continue with Google",
+  "@startPageGoogleButton": {
+    "description": "Google sign in button text"
+  },
+  "startPageAppleButton": "Continue with Apple",
+  "@startPageAppleButton": {
+    "description": "Apple sign in button text"
+  }
+}
+

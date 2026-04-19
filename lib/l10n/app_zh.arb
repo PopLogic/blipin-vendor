@@ -1,0 +1,32 @@
+{
+  "@@locale": "zh",
+  "startPageTitle": "Blipin！開啟你的行動旅程！",
+  "@startPageTitle": {
+    "description": "Start page main title"
+  },
+  "startPageEmailLabel": "電子郵件地址",
+  "@startPageEmailLabel": {
+    "description": "Email field label"
+  },
+  "startPageEmailHint": "請輸入您的電子郵件地址",
+  "@startPageEmailHint": {
+    "description": "Email field hint text"
+  },
+  "startPageContinueButton": "繼續",
+  "@startPageContinueButton": {
+    "description": "Continue button text"
+  },
+  "startPageQuickLogin": "快速進入",
+  "@startPageQuickLogin": {
+    "description": "Quick login divider text"
+  },
+  "startPageGoogleButton": "使用Google帳號繼續",
+  "@startPageGoogleButton": {
+    "description": "Google sign in button text"
+  },
+  "startPageAppleButton": "使用Apple帳號繼續",
+  "@startPageAppleButton": {
+    "description": "Apple sign in button text"
+  }
+}
+
