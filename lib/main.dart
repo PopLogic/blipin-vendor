@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
-import 'package:blipin_vendor/pages/start_page.dart';
+import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const StartPage(),
+      home: const SplashPage(),
     );
   }
 }

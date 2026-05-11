@@ -27,6 +27,14 @@
   "startPageAppleButton": "Continue with Apple",
   "@startPageAppleButton": {
     "description": "Apple sign in button text"
+  },
+  "entryPageStartButton": "Get Started",
+  "@entryPageStartButton": {
+    "description": "Entry page start button text"
+  },
+  "requiredFieldMark": "*",
+  "@requiredFieldMark": {
+    "description": "Required field asterisk mark"
   }
 }
 

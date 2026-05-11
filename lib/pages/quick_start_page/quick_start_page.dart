@@ -54,9 +54,9 @@ class _StartPageState extends State<StartPage> {
                     '${l10n.startPageEmailLabel} ',
                     style: const TextStyle(fontSize: 14, color: Colors.black87),
                   ),
-                  const Text(
-                    '*',
-                    style: TextStyle(fontSize: 14, color: Colors.red),
+                  Text(
+                    l10n.requiredFieldMark,
+                    style: const TextStyle(fontSize: 14, color: Colors.red),
                   ),
                 ],
               ),
@@ -111,7 +111,6 @@ class _StartPageState extends State<StartPage> {
                 ),
               ),
               const SizedBox(height: 40),
-              // 快速進入 divider
               Row(
                 children: [
                   const Expanded(child: Divider(color: Colors.grey)),
