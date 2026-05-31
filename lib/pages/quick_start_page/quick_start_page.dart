@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
+import 'package:blipin_vendor/pages/verification_page/verification_page.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -91,7 +92,11 @@ class _StartPageState extends State<StartPage> {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: handle continue
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const VerificationPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE07820),

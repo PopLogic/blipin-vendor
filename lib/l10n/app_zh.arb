@@ -35,6 +35,34 @@
   "requiredFieldMark": "*",
   "@requiredFieldMark": {
     "description": "Required field asterisk mark"
+  },
+  "verificationPageTitle": "帳號驗證",
+  "@verificationPageTitle": {
+    "description": "Verification page title"
+  },
+  "verificationPageSubtitle": "已將6位驗證碼寄至您指定信箱",
+  "@verificationPageSubtitle": {
+    "description": "Verification page subtitle"
+  },
+  "verificationPageResendTimer": "{minutes}分{seconds}秒後再試一次",
+  "@verificationPageResendTimer": {
+    "description": "Resend timer text",
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "String" }
+    }
+  },
+  "verificationPageResendButton": "重新發送驗證碼",
+  "@verificationPageResendButton": {
+    "description": "Resend verification code button text"
+  },
+  "verificationPageErrorMessage": "驗證碼錯誤",
+  "@verificationPageErrorMessage": {
+    "description": "Verification error message"
+  },
+  "createAccountTitle": "建立新帳號",
+  "@createAccountTitle": {
+    "description": "Create account page title in app bar"
   }
 }
 

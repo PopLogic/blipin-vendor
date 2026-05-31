@@ -35,6 +35,34 @@
   "requiredFieldMark": "*",
   "@requiredFieldMark": {
     "description": "Required field asterisk mark"
+  },
+  "verificationPageTitle": "Account Verification",
+  "@verificationPageTitle": {
+    "description": "Verification page title"
+  },
+  "verificationPageSubtitle": "We sent a 6-digit verification code to your email",
+  "@verificationPageSubtitle": {
+    "description": "Verification page subtitle"
+  },
+  "verificationPageResendTimer": "Resend in {minutes}m {seconds}s",
+  "@verificationPageResendTimer": {
+    "description": "Resend timer text",
+    "placeholders": {
+      "minutes": { "type": "int" },
+      "seconds": { "type": "String" }
+    }
+  },
+  "verificationPageResendButton": "Resend Verification Code",
+  "@verificationPageResendButton": {
+    "description": "Resend verification code button text"
+  },
+  "verificationPageErrorMessage": "Incorrect verification code",
+  "@verificationPageErrorMessage": {
+    "description": "Verification error message"
+  },
+  "createAccountTitle": "Create Account",
+  "@createAccountTitle": {
+    "description": "Create account page title in app bar"
   }
 }
 
