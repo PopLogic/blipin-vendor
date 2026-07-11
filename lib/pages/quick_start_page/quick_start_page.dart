@@ -1,22 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'quick_start_view_model.dart';
 
-class QuickStartPage extends StatelessWidget {
+class QuickStartPage extends HookWidget {
   const QuickStartPage({super.key, required this.vm});
 
   static Future<void> enterPage(BuildContext context) async {
     final vm = QuickStartViewModel();
     Widget page = QuickStartPage(vm: vm);
-    await RouteUtils.pushPage(context, page);
-    vm.dispose();
+    RouteUtils.pushPage(context, page);
   }
 
   final QuickStartViewModel vm;
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      return vm.dispose;
+    }, [vm]);
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,

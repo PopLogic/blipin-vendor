@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 import 'package:blipin_vendor/pages/quick_start_page/quick_start_page.dart';
@@ -10,10 +12,9 @@ class EntryPage extends StatelessWidget {
   static Future<void> enterPage(BuildContext context, {bool replaceCurrent = false}) async {
     final page = const EntryPage();
     if (replaceCurrent) {
-      await RouteUtils.replaceWithPage(context, page);
-      return;
+      RouteUtils.replaceWithPage(context, page);
     }
-    await RouteUtils.pushPage(context, page);
+    RouteUtils.pushPage(context, page);
   }
 
   @override
@@ -33,9 +34,7 @@ class EntryPage extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   // City buildings silhouette
-                  Positioned.fill(
-                    child: CustomPaint(painter: _CityPainter()),
-                  ),
+                  Positioned.fill(child: CustomPaint(painter: _CityPainter())),
                   // Truck + pin icon centered
                   Center(
                     child: SizedBox(
@@ -45,15 +44,7 @@ class EntryPage extends StatelessWidget {
                         alignment: Alignment.center,
                         children: const [
                           Icon(Icons.location_on, color: Colors.white, size: 72),
-                          Positioned(
-                            bottom: 4,
-                            left: 4,
-                            child: Icon(
-                              Icons.local_shipping,
-                              color: Color(0xFFE07820),
-                              size: 38,
-                            ),
-                          ),
+                          Positioned(bottom: 4, left: 4, child: Icon(Icons.local_shipping, color: Color(0xFFE07820), size: 38)),
                         ],
                       ),
                     ),
@@ -70,18 +61,10 @@ class EntryPage extends StatelessWidget {
                   onPressed: () {
                     QuickStartPage.enterPage(context);
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFE07820),
-                    shape: StadiumBorder(),
-                    elevation: 0,
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFE07820), shape: StadiumBorder(), elevation: 0),
                   child: Text(
                     l10n.entryPageStartButton,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),

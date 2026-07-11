@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 
-class QuickStartViewModel {
+class QuickStartViewModel extends ChangeNotifier {
   QuickStartViewModel() : emailController = TextEditingController();
 
   final TextEditingController emailController;
@@ -10,8 +10,10 @@ class QuickStartViewModel {
     return VerificationRoute(email: emailController.text.trim());
   }
 
+  @override
   void dispose() {
     emailController.dispose();
+    super.dispose();
   }
 
   String getEmail() {

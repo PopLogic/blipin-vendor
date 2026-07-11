@@ -1,23 +1,38 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/pages/verification_page/verification_view_model.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 
-class VerificationPage extends HookConsumerWidget {
-  const VerificationPage({super.key, this.email});
+class VerificationPage extends HookWidget {
+  const VerificationPage({super.key, required this.vm});
 
-  final String? email;
+  final VerificationViewModel vm;
 
   static Future<void> enterPage(BuildContext context, {String? email}) async {
-    await RouteUtils.pushPage(context, VerificationPage(email: email));
+    final vm = VerificationViewModel.impl();
+    vm.initialize(email: email);
+    final page = VerificationPage(vm: vm);
+    RouteUtils.pushPage(context, page);
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    useEffect(() {
+      return vm.dispose;
+    }, [vm]);
+    useListenable(vm);
     final l10n = AppLocalizations.of(context)!;
-    final vm = ref.read(verificationViewModelProvider);
+    final route = vm.consumePendingRoute();
+    if (route != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        RouteUtils.navigate(context, route);
+      });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -92,24 +107,24 @@ class VerificationPage extends HookConsumerWidget {
                   Center(
                     child: vm.canResend
                         ? GestureDetector(
-                      onTap: vm.resendCode,
-                      child: Text(
-                        l10n.verificationPageResendButton,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFFE07820),
-                          decoration: TextDecoration.underline,
-                          decorationColor: Color(0xFFE07820),
-                        ),
-                      ),
-                    )
+                            onTap: vm.resendCode,
+                            child: Text(
+                              l10n.verificationPageResendButton,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color(0xFFE07820),
+                                decoration: TextDecoration.underline,
+                                decorationColor: Color(0xFFE07820),
+                              ),
+                            ),
+                          )
                         : Text(
-                      _timerText(context, vm),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF888888),
-                      ),
-                    ),
+                            _timerText(context, vm),
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF888888),
+                            ),
+                          ),
                   ),
                   if (vm.hasError) ...[
                     const SizedBox(height: 12),
