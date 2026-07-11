@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,7 @@ class CreatePasswordPage extends HookWidget {
     final vm = CreatePasswordViewModel();
     vm.initialize(email: email);
     final page = CreatePasswordPage(vm: vm, email: email);
-    RouteUtils.pushPage(context, page);
+    await RouteUtils.pushPage(context, page);
   }
 
   @override

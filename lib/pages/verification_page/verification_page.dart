@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,7 +14,7 @@ class VerificationPage extends HookWidget {
     final vm = VerificationViewModel.impl();
     vm.initialize(email: email);
     final page = VerificationPage(vm: vm);
-    RouteUtils.pushPage(context, page);
+    await RouteUtils.pushPage(context, page);
   }
 
   @override

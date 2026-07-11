@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 import 'package:blipin_vendor/pages/quick_start_page/quick_start_page.dart';
@@ -12,9 +10,10 @@ class EntryPage extends StatelessWidget {
   static Future<void> enterPage(BuildContext context, {bool replaceCurrent = false}) async {
     final page = const EntryPage();
     if (replaceCurrent) {
-      RouteUtils.replaceWithPage(context, page);
+      await RouteUtils.replaceWithPage(context, page);
+      return;
     }
-    RouteUtils.pushPage(context, page);
+    await RouteUtils.pushPage(context, page);
   }
 
   @override

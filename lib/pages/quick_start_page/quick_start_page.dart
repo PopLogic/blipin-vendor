@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
@@ -12,7 +10,7 @@ class QuickStartPage extends HookWidget {
   static Future<void> enterPage(BuildContext context) async {
     final vm = QuickStartViewModel();
     Widget page = QuickStartPage(vm: vm);
-    RouteUtils.pushPage(context, page);
+    await RouteUtils.pushPage(context, page);
   }
 
   final QuickStartViewModel vm;
