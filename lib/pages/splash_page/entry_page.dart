@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 import 'package:blipin_vendor/pages/quick_start_page/quick_start_page.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
+import 'package:blipin_vendor/utils/route_utils.dart';
 
 class EntryPage extends StatelessWidget {
   const EntryPage({super.key});
+
+  static Future<void> enterPage(BuildContext context, {bool replaceCurrent = false}) async {
+    final page = const EntryPage();
+    if (replaceCurrent) {
+      await RouteUtils.replaceWithPage(context, page);
+      return;
+    }
+    await RouteUtils.pushPage(context, page);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +68,7 @@ class EntryPage extends StatelessWidget {
                 height: 56,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const StartPage()),
-                    );
+                    QuickStartPage.enterPage(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE07820),

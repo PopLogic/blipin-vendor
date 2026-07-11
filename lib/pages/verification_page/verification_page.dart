@@ -3,9 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/pages/verification_page/verification_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:blipin_vendor/utils/route_utils.dart';
 
 class VerificationPage extends HookConsumerWidget {
-  const VerificationPage({super.key});
+  const VerificationPage({super.key, this.email});
+
+  final String? email;
+
+  static Future<void> enterPage(BuildContext context, {String? email}) async {
+    await RouteUtils.pushPage(context, VerificationPage(email: email));
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

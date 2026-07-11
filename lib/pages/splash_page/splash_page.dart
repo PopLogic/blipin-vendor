@@ -15,10 +15,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const EntryPage()),
-        );
+        EntryPage.enterPage(context, replaceCurrent: true);
       }
     });
   }
