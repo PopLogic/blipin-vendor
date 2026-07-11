@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-final verificationViewModelProvider = ChangeNotifierProvider<VerificationViewModel>(
-  (ref) => VerificationViewModel.impl(),
-);
+import 'package:blipin_vendor/utils/route_utils.dart';
 
 abstract class VerificationViewModel extends ChangeNotifier {
   static const int otpLength = 6;
@@ -16,10 +12,13 @@ abstract class VerificationViewModel extends ChangeNotifier {
   int get remainingSeconds;
   bool get canResend;
   bool get hasError;
+  bool get isVerifying;
 
+  void initialize({String? email});
   void onOtpChanged(int index, String value);
   void onKeyEvent(int index, KeyEvent event);
   void resendCode();
+  AppRoute? consumePendingRoute();
 
   factory VerificationViewModel.impl() = _VerificationViewModelImpl._;
 
@@ -39,6 +38,9 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
   Timer? _timer;
   bool _canResend = false;
   bool _hasError = false;
+  bool _isVerifying = false;
+  AppRoute? _pendingRoute;
+  String? _email;
 
   @override
   int get remainingSeconds => _remainingSeconds;
@@ -46,6 +48,8 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
   bool get canResend => _canResend;
   @override
   bool get hasError => _hasError;
+  @override
+  bool get isVerifying => _isVerifying;
 
   bool _isDisposed = false;
 
@@ -54,6 +58,18 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
     for (final fn in focusNodes) {
       fn.addListener(notifyListeners);
     }
+  }
+
+  @override
+  void initialize({String? email}) {
+    _email = email;
+    _pendingRoute = null;
+    _hasError = false;
+    _isVerifying = false;
+    for (final c in controllers) {
+      c.clear();
+    }
+    _startTimer();
   }
 
   void _startTimer() {
@@ -80,10 +96,10 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
         focusNodes[index + 1].requestFocus();
       } else {
         focusNodes[index].unfocus();
-        _validateOtp();
       }
     }
     _hasError = false;
+    _triggerAutoVerify();
     notifyListeners();
   }
 
@@ -95,17 +111,37 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
         index > 0) {
       focusNodes[index - 1].requestFocus();
       controllers[index - 1].clear();
+      _hasError = false;
       notifyListeners();
     }
   }
 
-  void _validateOtp() {
+  void _triggerAutoVerify() {
     final code = controllers.map((c) => c.text).join();
-    if (code.length == VerificationViewModel.otpLength) {
-      // TODO: call actual verification API
-      _hasError = false;
-      notifyListeners();
+    if (_pendingRoute != null || _isVerifying) {
+      return;
     }
+    if (code.length == VerificationViewModel.otpLength) {
+      _validateOtp(code);
+    }
+  }
+
+  Future<void> _validateOtp(String code) async {
+    _isVerifying = true;
+    notifyListeners();
+    final isMatched = await _compareOtp(code);
+    _isVerifying = false;
+    if (isMatched) {
+      _hasError = false;
+      _pendingRoute = CreatePasswordRoute(email: _email);
+    } else {
+      _hasError = true;
+    }
+    notifyListeners();
+  }
+
+  Future<bool> _compareOtp(String code) async {
+    return true;
   }
 
   @override
@@ -117,6 +153,13 @@ class _VerificationViewModelImpl extends ChangeNotifier implements VerificationV
     focusNodes[0].requestFocus();
     _startTimer();
     // TODO: call API to resend code
+  }
+
+  @override
+  AppRoute? consumePendingRoute() {
+    final route = _pendingRoute;
+    _pendingRoute = null;
+    return route;
   }
 
   @override
