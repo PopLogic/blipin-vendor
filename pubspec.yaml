@@ -50,6 +50,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_flavorizr: ^2.6.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -96,3 +97,48 @@ flutter:
   # and uncomment the fonts section above, pointing to the correct path.
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flavorizr:
+  ide: "idea"
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+
+  flavors:
+    development:
+      app:
+        name: "Blipin Vendor Dev"
+      android:
+        applicationId: "com.poplogic.blipin_vendor.development"
+        icon: "assets/development/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/development/app_icon-foreground.svg"
+          background: "assets/development/app-icon-background.svg"
+      ios:
+        bundleId: "com.poplogic.blipinVendor.development"
+        icon: "assets/development/app-icon.png"
+
+    staging:
+      app:
+        name: "Blipin Vendor Stg"
+      android:
+        applicationId: "com.poplogic.blipin_vendor.staging"
+        icon: "assets/staging/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/staging/app_icon-foreground.svg"
+          background: "assets/staging/app-icon-background.svg"
+      ios:
+        bundleId: "com.poplogic.blipinVendor.staging"
+        icon: "assets/staging/app-icon.png"
+
+    production:
+      app:
+        name: "Blipin Vendor"
+      android:
+        applicationId: "com.poplogic.blipin_vendor"
+        icon: "assets/production/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/production/app_icon-foreground.svg"
+          background: "assets/production/app-icon-background.svg"
+      ios:
+        bundleId: "com.poplogic.blipinVendor"
+        icon: "assets/production/app-icon.png"
