@@ -12,7 +12,7 @@ jobs:
   build:
     name: Validate Compilability and Unit Tests
     runs-on:
-      group: Blipin-Client
+      group: Blipin-Vendor
       labels: [ self-hosted, macOS ] # Note: iOS builds require a macOS host machine
 
     steps:
