@@ -30,7 +30,14 @@ jobs:
         run: flutter pub get
 
       - name: Run Unit Tests
-        run: flutter test
+        run: flutter test || {
+          status=$?
+          if [ $status -eq 79 ]; then
+          echo "⚠️ No unit tests found. Continuing build..."
+          exit 0
+          fi
+          exit $status
+          }
 
       - name: Build iOS App (Validation)
         run: flutter build ios --no-codesign --debug
