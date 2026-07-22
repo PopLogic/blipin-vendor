@@ -1,3 +1,4 @@
+import 'package:blipin_vendor/flavors.dart';
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/pages/splash_page/entry_page.dart';
 
@@ -42,10 +43,13 @@ class BlipinLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double imageWidth = size == LogoSize.large ? 200 : 140;
-    return Image.asset(
-      'assets/images/Default@1x.png',
-      width: imageWidth,
-      fit: BoxFit.contain,
+    return FittedBox(
+      clipBehavior: Clip.hardEdge,
+      child: Image.asset(
+        F.appIcon,
+        width: imageWidth,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

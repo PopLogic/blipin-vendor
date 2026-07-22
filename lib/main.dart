@@ -1,10 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 
-Future<void> runMainApp() async {
+import 'flavors.dart';
+
+Future<void> runMainApp({required FirebaseOptions firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  // * Initialize Firebase
+  await Firebase.initializeApp(options: firebaseOptions);
   runApp(const MyApp());
 }
 
