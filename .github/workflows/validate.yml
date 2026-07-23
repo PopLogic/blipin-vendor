@@ -1,0 +1,48 @@
+name: ios-build-validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  build:
+    name: Validate Compilability and Unit Tests
+    runs-on:
+      group: Blipin-Vendor
+      labels: [ self-hosted, macOS ] # Note: iOS builds require a macOS host machine
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      - name: Run Unit Tests
+        run: |
+          set +e
+          flutter test
+          status=$?
+          set -e
+
+          if [ $status -eq 79 ]; then
+            echo "⚠️ No unit tests found. Continuing build..."
+            exit 0
+          elif [ $status -ne 0 ]; then
+            echo "❌ Tests failed with exit code $status"
+            exit $status
+          fi
+
+      - name: Build iOS App (Validation)
+        run: flutter build ios --no-codesign --debug

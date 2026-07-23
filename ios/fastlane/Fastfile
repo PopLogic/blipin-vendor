@@ -1,0 +1,88 @@
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Last Commit"
+  lane :last_commit do
+    `git log -1 --pretty=%B`.strip
+  end
+
+  desc "Upload to TestFlight"
+  require "json"
+
+  lane :staging_validation do |options|
+    scheme = options[:scheme] || "staging"
+
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: ENV["APP_STORE_CONNECT_API_KEY_PATH"]
+    )
+
+    build_number = latest_testflight_build_number(
+      api_key: api_key
+    ) + 1
+
+    increment_build_number(
+      build_number: build_number
+    )
+
+    match(
+      type: "appstore",
+      app_identifier: "com.poplogic.blipinVendor.staging"
+    )
+
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: :scheme,
+      export_method: "app-store"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      changelog: get_branch_last_commit,
+      skip_waiting_for_build_processing: true
+    )
+
+    payload = {
+      username: "Github Action",
+      content: "A new TestFlight build has been uploaded 🚀",
+      avatar_url: "https://poplogic.github.io/assets/ic_launcher.png",
+      embeds: [
+        {
+          title: "TestFlight Upload",
+          color: 0x007AFF,
+          fields: [
+            {
+              name: "Scheme",
+              value: scheme,
+              inline: true
+            },
+            {
+              name: "Build Number",
+              value: build_number.to_s,
+              inline: true
+            },
+            {
+              name: "Release Notes",
+              value: get_branch_last_commit,
+              inline: false
+            },
+            {
+              name: "App Store Connect",
+              value: "https://appstoreconnect.apple.com/apps",
+              inline: false
+            }
+          ]
+        }
+      ]
+    }
+
+    sh(
+      "curl -sS -X POST '#{ENV["DISCORD_WEBHOOK_URL"]}' " \
+      "-H 'Content-Type: application/json' " \
+      "-d '#{payload.to_json}'"
+    )
+  end
+
+end

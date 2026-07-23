@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ^3.11.0
@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   hooks_riverpod: ^2.6.1
   flutter_hooks: ^0.21.0
+  firebase_core: ^4.12.1
 
 dev_dependencies:
   flutter_test:
@@ -50,13 +51,15 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_flavorizr: ^2.6.0
+  flutter_native_splash: ^2.4.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  default-flavor: development
   generate: true
 
   # The following line ensures that the Material Icons font is
@@ -68,6 +71,9 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/development/ # TODO: Should load assets from the correct flavor folder
+    - assets/staging/
+    - assets/production/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -96,3 +102,58 @@ flutter:
   # and uncomment the fonts section above, pointing to the correct path.
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flavorizr:
+  ide: "idea"
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+
+  flavors:
+    development:
+      app:
+        name: "Blipin Vendor Dev"
+      android:
+        applicationId: "com.poplogic.blipin_vendor.development"
+        icon: "assets/development/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/development/app-icon.png"
+          background: "assets/development/app-icon.png"
+      ios:
+        bundleId: "com.poplogic.blipinVendor.development"
+        icon: "assets/development/app-icon.png"
+
+    staging:
+      app:
+        name: "Blipin Vendor Stg"
+      android:
+        applicationId: "com.poplogic.blipin_vendor.staging"
+        icon: "assets/staging/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/staging/app-icon-foreground.png"
+          background: "assets/staging/app-icon-background.png"
+      ios:
+        bundleId: "com.poplogic.blipinVendor.staging"
+        icon: "assets/staging/app-icon.png"
+
+    production:
+      app:
+        name: "Blipin Vendor"
+      android:
+        applicationId: "com.poplogic.blipin_vendor"
+        icon: "assets/production/app-icon.png"
+        adaptiveIcon:
+          foreground: "assets/production/app-icon-foreground.png"
+          background: "assets/production/app-icon-background.png"
+      ios:
+        bundleId: "com.poplogic.blipinVendor"
+        icon: "assets/production/app-icon.png"
+
+
+# Flutter Native Splash configuration
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/android/app-icon-foreground.png"
+  android_12:
+    color: "#ffffff"
+    icon_background_color: "#FFFFFF"
+    image: "assets/android/app-icon-foreground.png"
