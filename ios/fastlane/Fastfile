@@ -31,7 +31,8 @@ platform :ios do
     match(
       type: "appstore",
       app_identifier: "com.poplogic.blipinVendor.staging",
-      api_key: api_key
+      api_key: api_key,
+      force_legacy_encryption: true
     )
 
     build_app(
