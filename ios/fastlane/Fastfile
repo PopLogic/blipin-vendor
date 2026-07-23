@@ -28,8 +28,6 @@ platform :ios do
       build_number: build_number
     )
 
-<<<<<<< Updated upstream
-=======
     match(
       type: "appstore",
       app_identifier: "com.poplogic.blipinVendor.staging",
@@ -37,7 +35,6 @@ platform :ios do
       force_legacy_encryption: true
     )
 
->>>>>>> Stashed changes
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "staging",
