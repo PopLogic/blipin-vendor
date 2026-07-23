@@ -28,9 +28,15 @@ platform :ios do
       build_number: build_number
     )
 
+    match(
+      type: "appstore",
+      app_identifier: "com.poplogic.blipinVendor.staging",
+      api_key: api_key
+    )
+
     build_app(
       workspace: "Runner.xcworkspace",
-      scheme: "staging",
+      scheme: :scheme,
       export_method: "app-store"
     )
 
