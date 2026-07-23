@@ -30,7 +30,7 @@ platform :ios do
 
     build_app(
       workspace: "Runner.xcworkspace",
-      scheme: :scheme,
+      scheme: "staging",
       export_method: "app-store"
     )
 
