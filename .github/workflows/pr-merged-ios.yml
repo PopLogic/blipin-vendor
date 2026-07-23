@@ -33,11 +33,6 @@ jobs:
       - name: Flutter Pub Get
         run: flutter pub get
 
-      - name: Install Bundler Gems
-        run: |
-          cd ios
-          bundle install
-
       - name: Setup App Store Connect API Key
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
