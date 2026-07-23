@@ -1137,11 +1137,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF99631D01C07DFD5434E59E /* Flutter/stagingRelease.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7J9VT69WQM;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Blipin Vendor Staging Apple Distribution";
 			};
 			name = "Release-staging";
 		};
@@ -1443,11 +1446,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B6C7BD2A6A331F873307BA1E /* Flutter/stagingProfile.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7J9VT69WQM;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Blipin Vendor Staging Apple Distribution";
 			};
 			name = "Profile-staging";
 		};
@@ -1468,11 +1474,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 162CCF51EFFC995A9835B15A /* Flutter/stagingDebug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7J9VT69WQM;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Blipin Vendor Staging Apple Distribution";
 			};
 			name = "Debug-staging";
 		};
