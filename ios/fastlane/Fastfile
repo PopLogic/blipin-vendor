@@ -32,6 +32,7 @@ platform :ios do
       type: "appstore",
       app_identifier: "com.poplogic.blipinVendor.staging",
       api_key: api_key,
+      git_url: ENV["MATCH_GIT_URL"],
       force_legacy_encryption: true
     )
 
