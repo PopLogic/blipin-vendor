@@ -46,4 +46,4 @@ jobs:
           APP_STORE_CONNECT_API_KEY_PATH: ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
         run: |
           cd ios
-          bundle exec fastlane testflight
+          bundle exec fastlane staging_validation
