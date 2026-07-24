@@ -14,7 +14,6 @@ concurrency:
 env:
   DEPLOY_ENV: staging
 
-
 jobs:
   build:
     name: Build and Upload TestFlight
@@ -25,7 +24,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
 
       - uses: actions/cache@v3
         with:
@@ -42,17 +40,14 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          flutter build ios --config-only --no-codesign
+          # Added `--flavor staging` and `--release` to ensure Flutter generates 
+          # framework configs matching the Xcode staging scheme
+          flutter build ios --release --flavor staging --config-only --no-codesign
 
       - name: Pod install
         working-directory: ios
         run: |
           pod install
-
-#      - name: Setup App Store Connect API Key
-#        run: |
-#          mkdir -p ~/.appstoreconnect/private_keys
-#          echo "${{ secrets.APP_STORE_CONNECT_API_KEY }}" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
 
       - name: Fastlane TestFlight
         env:
