@@ -33,6 +33,10 @@ jobs:
       - name: Flutter Pub Get
         run: flutter pub get
 
+      - name: pod install
+        working-directory: ios
+        run: pod install
+
 #      - name: Setup App Store Connect API Key
 #        run: |
 #          mkdir -p ~/.appstoreconnect/private_keys
