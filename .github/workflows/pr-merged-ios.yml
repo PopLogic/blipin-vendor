@@ -38,13 +38,14 @@ jobs:
         with:
           flutter-version: ${{ vars.FLUTTER_VERSION }}
 
-      - name: Flutter Pub Get
-        run: flutter pub get
+      - name: Flutter Clean and Pub Get
+        run: |
+          flutter clean && rm ios/Podfile.lock pubspec.lock && rm -rf ios/Pods ios/Runner.xcworkspace
+          flutter pub get
 
       - name: Pod install
         working-directory: ios
         run: |
-          rm -rf Pods Podfile.lock
           pod install
 
 #      - name: Setup App Store Connect API Key
