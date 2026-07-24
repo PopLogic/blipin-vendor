@@ -16,8 +16,8 @@ platform :ios do
 
 
     # 1. Create a temporary, unlocked keychain for CI
-    keychain_name = "ci_build_keychain"
-    keychain_password = "temp_ci_password"
+    keychain_name = "login.keychain"
+    keychain_password = "1224"
 
     create_keychain(
       name: keychain_name,
