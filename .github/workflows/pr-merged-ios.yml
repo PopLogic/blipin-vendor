@@ -42,7 +42,7 @@ jobs:
           flutter pub get
           # Added `--flavor staging` and `--release` to ensure Flutter generates 
           # framework configs matching the Xcode staging scheme
-          flutter build ios --release --flavor staging --config-only --no-codesign
+          flutter build ios --release --flavor staging  -t lib/main_stg.dart --config-only --no-codesign
 
       - name: Pod install
         working-directory: ios
