@@ -14,9 +14,19 @@ platform :ios do
     scheme = options[:scheme] || "staging"
     app_id = "com.poplogic.blipinVendor.staging"
 
-    before_all do
-      ENV["DELIVER_ALTOOL_ADDITIONAL_UPLOAD_PARAMETERS"] = "--use-old-altool"
-    end
+
+    # 1. Create a temporary, unlocked keychain for CI
+    keychain_name = "ci_build_keychain"
+    keychain_password = "temp_ci_password"
+
+    create_keychain(
+      name: keychain_name,
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600, # Keep unlocked for 1 hour
+      lock_when_sleeps: false
+    )
 
     # 1. Native Base64 key handling using Fastlane's built-in parameter
     api_key = app_store_connect_api_key(
@@ -45,7 +55,9 @@ platform :ios do
       api_key: api_key,
       git_url: ENV["MATCH_GIT_URL"],
       force_legacy_encryption: true,
-      readonly: true
+      readonly: true,
+      keychain_name: keychain_name,
+      keychain_password: keychain_password
     )
 
     # 5. Build iOS App
@@ -95,6 +107,8 @@ platform :ios do
     request = Net::HTTP::Post.new(uri.request_uri, { 'Content-Type' => 'application/json' })
     request.body = payload.to_json
     http.request(request)
+
+    delete_keychain(name: keychain_name)
   end
 
 end
