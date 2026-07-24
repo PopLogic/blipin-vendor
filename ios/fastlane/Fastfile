@@ -44,11 +44,19 @@ platform :ios do
       readonly: true
     )
 
+    # 2. Pre-build Flutter frameworks, Dart defines, and ephemeral Swift packages
+    sh("flutter build ios --flavor staging --release --no-codesign")
+
     # 5. Build iOS App
     build_app(
       workspace: "Runner.xcworkspace",
-      scheme: scheme,
-      export_method: "app-store"
+      scheme: "staging",
+      configuration: "Release-staging",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Runner.ipa",
+      clean: true,
+      xcargs: "ALLOW_PROVISIONING_UPDATES=NO"
     )
 
     # 6. Upload to TestFlight
