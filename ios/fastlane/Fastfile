@@ -44,9 +44,6 @@ platform :ios do
       readonly: true
     )
 
-    # 2. Pre-build Flutter frameworks, Dart defines, and ephemeral Swift packages
-    sh("flutter build ios --flavor staging --release --no-codesign")
-
     # 5. Build iOS App
     build_app(
       workspace: "Runner.xcworkspace",
