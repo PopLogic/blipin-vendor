@@ -70,8 +70,6 @@ platform :ios do
       output_name: "Runner.ipa",
       clean: true,
       xcargs: "ALLOW_PROVISIONING_UPDATES=NO",
-      keychain_name: keychain_name,
-      keychain_password: keychain_password
     )
 
     # 6. Upload to TestFlight
