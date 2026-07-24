@@ -2,6 +2,13 @@ default_platform(:ios)
 
 platform :ios do
 
+  desc "Get the last commit message from the current branch"
+  lane :get_branch_last_commit do
+    last_commit = `git log -1 --pretty=%B`.strip
+    UI.message("Last commit message: #{last_commit}")
+    last_commit
+  end
+
   desc "Last Commit"
   lane :last_commit do
     `git log -1 --pretty=%B`.strip
