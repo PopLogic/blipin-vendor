@@ -66,12 +66,12 @@ platform :ios do
     # 6. Upload to TestFlight
     upload_to_testflight(
       api_key: api_key,
-      changelog: get_branch_last_commit,
+      changelog: :get_branch_last_commit,
       skip_waiting_for_build_processing: true
     )
 
     # 7. Safe Webhook Execution via Net::HTTP (prevents shell single-quote escaping issues in commit messages)
-    commit_msg = get_branch_last_commit
+    commit_msg = :get_branch_last_commit
     payload = {
       username: "Github Action",
       content: "A new TestFlight build has been uploaded 🚀",
