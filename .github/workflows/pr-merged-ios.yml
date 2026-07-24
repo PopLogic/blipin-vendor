@@ -40,8 +40,9 @@ jobs:
 
       - name: Flutter Clean and Pub Get
         run: |
-          flutter clean && rm ios/Podfile.lock pubspec.lock && rm -rf ios/Pods ios/Runner.xcworkspace
+          flutter clean
           flutter pub get
+          flutter build ios --config-only --no-codesign
 
       - name: Pod install
         working-directory: ios
