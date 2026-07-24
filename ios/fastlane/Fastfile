@@ -1,20 +1,21 @@
 default_platform(:ios)
 
+require "json"
+require "net/http"
+require "uri"
+
+def get_branch_last_commit
+  `git log -1 --pretty=%B`.strip
+end
+
 platform :ios do
-
-  desc "Last Commit"
-  lane :last_commit do
-    `git log -1 --pretty=%B`.strip
-  end
-
-  desc "Upload to TestFlight"
-  require "json"
-
+  desc "Build and upload the Staging flavor to TestFlight"
   lane :staging_validation do |options|
     scheme = options[:scheme] || "staging"
+    configuration = "Release-#{scheme}"
     app_id = "com.poplogic.blipinVendor.staging"
 
-    # 1. Native Base64 key handling using Fastlane's built-in parameter
+    # Authenticate with App Store Connect
     api_key = app_store_connect_api_key(
       key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
       issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
@@ -22,74 +23,99 @@ platform :ios do
       is_key_content_base64: true
     )
 
-    # 2. Query build number explicitly for this Bundle Identifier
-    build_number = latest_testflight_build_number(
-      api_key: api_key,
-      app_identifier: app_id
-    ) + 1
+    commit_msg = get_branch_last_commit
 
-    # 3. Explicitly target Runner.xcodeproj when running inside /ios directory
+    # Determine next TestFlight build number
+    build_number =
+      latest_testflight_build_number(
+        api_key: api_key,
+        app_identifier: app_id
+      ).to_i + 1
+
     increment_build_number(
       build_number: build_number,
       xcodeproj: "Runner.xcodeproj"
     )
 
-    # 4. Use readonly mode for CI to prevent git state errors
-    match(
-      type: "appstore",
-      app_identifier: app_id,
-      api_key: api_key,
-      git_url: ENV["MATCH_GIT_URL"],
-      force_legacy_encryption: true,
-      readonly: true
-    )
-
-    # 5. Build iOS App
+    # Build the IPA
     build_app(
       workspace: "Runner.xcworkspace",
-      scheme: "staging",
-      configuration: "Release-staging",
+      scheme: scheme,
+      configuration: configuration,
       export_method: "app-store",
+      clean: true,
       output_directory: "./build",
       output_name: "Runner.ipa",
-      clean: true,
       xcargs: "ALLOW_PROVISIONING_UPDATES=NO"
     )
 
-    # 6. Upload to TestFlight
+    # Upload to TestFlight
     upload_to_testflight(
       api_key: api_key,
-      changelog: get_branch_last_commit,
+      changelog: commit_msg,
       skip_waiting_for_build_processing: true
     )
 
-    # 7. Safe Webhook Execution via Net::HTTP (prevents shell single-quote escaping issues in commit messages)
-    commit_msg = get_branch_last_commit
+    # Discord notification
     payload = {
-      username: "Github Action",
-      content: "A new TestFlight build has been uploaded 🚀",
+      username: "GitHub Actions",
+      content: "🚀 A new TestFlight build has been uploaded.",
       avatar_url: "https://poplogic.github.io/assets/ic_launcher.png",
       embeds: [
         {
           title: "TestFlight Upload",
           color: 0x007AFF,
           fields: [
-            { name: "Scheme", value: scheme, inline: true },
-            { name: "Build Number", value: build_number.to_s, inline: true },
-            { name: "Release Notes", value: commit_msg, inline: false },
-            { name: "App Store Connect", value: "https://appstoreconnect.apple.com/apps", inline: false }
+            {
+              name: "Scheme",
+              value: scheme,
+              inline: true
+            },
+            {
+              name: "Configuration",
+              value: configuration,
+              inline: true
+            },
+            {
+              name: "Build Number",
+              value: build_number.to_s,
+              inline: true
+            },
+            {
+              name: "Release Notes",
+              value: commit_msg,
+              inline: false
+            },
+            {
+              name: "App",
+              value: app_id,
+              inline: false
+            },
+            {
+              name: "App Store Connect",
+              value: "https://appstoreconnect.apple.com/apps",
+              inline: false
+            }
           ]
         }
       ]
     }
 
     uri = URI.parse(ENV["DISCORD_WEBHOOK_URL"])
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = (uri.scheme == "https")
 
-    request = Net::HTTP::Post.new(uri.request_uri, { 'Content-Type' => 'application/json' })
-    request.body = payload.to_json
-    http.request(request)
+    Net::HTTP.start(
+      uri.host,
+      uri.port,
+      use_ssl: uri.scheme == "https"
+    ) do |http|
+      request = Net::HTTP::Post.new(
+        uri.request_uri,
+        "Content-Type" => "application/json"
+      )
+      request.body = payload.to_json
+      response = http.request(request)
+
+      UI.message("Discord notification sent (#{response.code})")
+    end
   end
-
 end
