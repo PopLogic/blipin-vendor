@@ -14,6 +14,10 @@ platform :ios do
     scheme = options[:scheme] || "staging"
     app_id = "com.poplogic.blipinVendor.staging"
 
+    before_all do
+      ENV["DELIVER_ALTOOL_ADDITIONAL_UPLOAD_PARAMETERS"] = "--use-old-altool"
+    end
+
     # 1. Native Base64 key handling using Fastlane's built-in parameter
     api_key = app_store_connect_api_key(
       key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
@@ -60,6 +64,7 @@ platform :ios do
     upload_to_testflight(
       api_key: api_key,
       changelog: get_branch_last_commit,
+      group: ["Blipin Vendor Testers"],
       skip_waiting_for_build_processing: true
     )
 
