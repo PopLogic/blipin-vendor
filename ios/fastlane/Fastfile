@@ -16,17 +16,17 @@ platform :ios do
 
 
     # 1. Create a temporary, unlocked keychain for CI
-#     keychain_name = "ci_build_keychain"
-#     keychain_password = "temp_ci_password"
-#
-#     create_keychain(
-#       name: keychain_name,
-#       password: keychain_password,
-#       default_keychain: true,
-#       unlock: true,
-#       timeout: 3600, # Keep unlocked for 1 hour
-#       lock_when_sleeps: false
-#     )
+    keychain_name = "ci_build_keychain"
+    keychain_password = "temp_ci_password"
+
+    create_keychain(
+      name: keychain_name,
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600, # Keep unlocked for 1 hour
+      lock_when_sleeps: false
+    )
 
     # 1. Native Base64 key handling using Fastlane's built-in parameter
     api_key = app_store_connect_api_key(
@@ -56,8 +56,8 @@ platform :ios do
       git_url: ENV["MATCH_GIT_URL"],
       force_legacy_encryption: true,
       readonly: true,
-#       keychain_name: keychain_name,
-#       keychain_password: keychain_password
+      keychain_name: keychain_name,
+      keychain_password: keychain_password
     )
 
     # 5. Build iOS App
@@ -70,6 +70,8 @@ platform :ios do
       output_name: "Runner.ipa",
       clean: true,
       xcargs: "ALLOW_PROVISIONING_UPDATES=NO"
+      keychain_name: keychain_name,
+      keychain_password: keychain_password
     )
 
     # 6. Upload to TestFlight
@@ -108,7 +110,7 @@ platform :ios do
     request.body = payload.to_json
     http.request(request)
 
-#     delete_keychain(name: keychain_name)
+    delete_keychain(name: keychain_name)
   end
 
 end
