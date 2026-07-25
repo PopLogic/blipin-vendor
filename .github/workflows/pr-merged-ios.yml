@@ -62,7 +62,10 @@ jobs:
           pod install
 
       - name: Install Fastlane
-        run: brew install fastlane
+        run: |
+            gem install bundler
+            bundle install
+          
 
 
       - name: Fastlane TestFlight
@@ -75,4 +78,4 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
         run: |
           cd ios
-          fastlane staging_validation
+          bundle exec fastlane staging_validation
