@@ -75,4 +75,4 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
         run: |
           cd ios
-          bundle exec fastlane staging_validation
+          fastlane staging_validation
