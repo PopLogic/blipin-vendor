@@ -1,17 +1,8 @@
-# Keep all Flutter plugin registrants
+
+# https://github.com/flutter/flutter/issues/78625#issuecomment-804164524
+#-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.** { *; }
+-keep class io.flutter.util.** { *; }
+-keep class io.flutter.view.** { *; }
+#-keep class io.flutter.** { *; }
 -keep class io.flutter.plugins.** { *; }
-
-# Keep Firebase core plugin
--keep class io.flutter.plugins.firebase.core.** { *; }
-
-# Keep all Firebase SDK classes
--keep class com.google.firebase.** { *; }
-
-# Keep Google Play services classes
--keep class com.google.android.gms.** { *; }
-
-# Prevent stripping of Flutter engine classes
--keep class io.flutter.embedding.engine.** { *; }
-
-# Keep generated plugin registrant
--keep class io.flutter.plugins.GeneratedPluginRegistrant { *; }
