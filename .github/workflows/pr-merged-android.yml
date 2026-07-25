@@ -40,7 +40,7 @@ jobs:
           flutter pub get
           # Added `--flavor staging` and `--release` to ensure Flutter generates 
           # framework configs matching the Xcode staging scheme
-          flutter build android --release --flavor ${{ env.DEPLOY_ENV }}  -t lib/main_${{ env.DEPLOY_ENV }}.dart --config-only --no-codesign
+          flutter build apk --release --flavor $DEPLOY_ENV -t lib/main_$DEPLOY_ENV.dart
 
       - name: Setup Firebase
         env:
