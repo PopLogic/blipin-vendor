@@ -83,7 +83,9 @@ jobs:
             bundle install
 
       - name: Run Fastlane lane (APK build + Firebase upload)
-        run: bundle exec fastlane staging_validation_apk
+        run: |
+          cd android
+          bundle exec fastlane staging_validation_apk
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_CREDENTIALS_JSON_PATH: ${{ github.workspace }}/firebase_credentials.json
