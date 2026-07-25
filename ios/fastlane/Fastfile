@@ -111,4 +111,71 @@ platform :ios do
     delete_keychain(name: keychain_name)
   end
 
+desc "Get the last commit message from the current branch"
+  lane :get_branch_last_commit_with_ui do
+      last_commit = `git log -1 --pretty=%B`.strip
+      UI.message("Last commit message: #{last_commit}")
+      last_commit
+  end
+
+  desc "Build and distribute stagingValidation APK"
+    lane :staging_validation_apk do
+
+#       increment_version
+      gradle(
+        task: "assemble",
+        build_type: "validation",
+        flavor: "staging"
+      )
+      apk = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+      UI.user_error!("APK output path was not found after assemble.") unless apk
+
+      last_release = firebase_app_distribution(
+        app: ENV["FIREBASE_APP_ID"],
+        service_credentials_file: ENV["FIREBASE_CREDENTIALS_JSON_PATH"],
+        groups: "internal-testers-1",
+        release_notes: get_branch_last_commit_with_ui,
+        apk_path: apk
+      )
+
+        release_notes = last_release && last_release[:releaseNotes] && last_release[:releaseNotes][:text] ? last_release[:releaseNotes][:text] : "No release notes provided."
+        display_version = last_release && last_release[:displayVersion] ? last_release[:displayVersion] : "N/A"
+        build_version = last_release && last_release[:buildVersion] ? last_release[:buildVersion] : "N/A"
+        testing_uri = last_release && last_release[:testingUri] ? last_release[:testingUri] : "N/A"
+
+        require "json"
+
+        payload = {
+          username: "Github Action",
+          content: "A new alpha APK has been uploaded to Firebase App Distribution. Check it out:",
+          avatar_url: "https://poplogic.github.io/assets/ic_launcher.png",
+          embeds: [
+            {
+              title: "Release Notes",
+              description: release_notes,
+              color: 0xff6600,
+              fields: [
+                {
+                  name: "Display Version",
+                  value: display_version.to_s,
+                  inline: true
+                },
+                {
+                  name: "Build Version",
+                  value: build_version.to_s,
+                  inline: true
+                },
+                {
+                  name: "Testing URI",
+                  value: testing_uri.to_s,
+                  inline: false
+                }
+              ]
+            }
+          ]
+        }
+
+        sh("curl -sS -X POST '#{ENV["DISCORD_WEBHOOK_URL"]}' -H 'Content-Type: application/json' -d '#{payload.to_json}'")
+      end
+
 end
