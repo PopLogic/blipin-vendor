@@ -76,7 +76,6 @@ android {
             )
             signingConfig = signingConfigs.getByName("validation")
             isMinifyEnabled = true
-            isShrinkResources = true
         }
     }
 }
