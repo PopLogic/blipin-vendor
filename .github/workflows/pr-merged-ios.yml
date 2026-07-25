@@ -44,6 +44,18 @@ jobs:
           # framework configs matching the Xcode staging scheme
           flutter build ios --release --flavor staging  -t lib/main_stg.dart --config-only --no-codesign
 
+      - name: Setup Firebase
+        env:
+          FIREBASE_JSON: ${{ secrets.FIREBASE_JSON }}
+          GOOGLE_SERVICE_PLIST: ${{ secrets.GOOGLE_SERVICE_PLIST }}
+          FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_CREDENTIALS_JSON }}
+        run: |
+          mkdir -p ios/Runner/${{ env.DEPLOY_ENV }}
+          echo "$GOOGLE_SERVICE_PLIST" | base64 --decode > ios/Runner/${{ env.DEPLOY_ENV }}/GoogleService-Info.plist
+          echo "$FIREBASE_CREDENTIALS_JSON" | base64 --decode > firebase_credentials
+          echo "$FIREBASE_JSON" | base64 --decode > firebase.json
+          
+
       - name: Pod install
         working-directory: ios
         run: |
