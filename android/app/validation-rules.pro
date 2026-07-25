@@ -1,0 +1,2 @@
+-keep class io.flutter.plugins.firebase.** { *; }
+-keep class com.google.firebase.** { *; }
