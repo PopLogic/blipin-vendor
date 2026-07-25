@@ -34,8 +34,13 @@ jobs:
         with:
           flutter-version: ${{ vars.FLUTTER_VERSION }}
 
-      - name: Flutter pub get
-        run: flutter pub get
+      - name: Flutter Clean and Pub Get
+        run: |
+          flutter clean
+          flutter pub get
+          # Added `--flavor staging` and `--release` to ensure Flutter generates 
+          # framework configs matching the Xcode staging scheme
+          flutter build android --release --flavor ${{ env.DEPLOY_ENV }}  -t lib/main_${{ env.DEPLOY_ENV }}.dart --config-only --no-codesign
 
       - name: Setup Firebase
         env:
