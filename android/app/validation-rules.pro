@@ -1,3 +1,7 @@
+-ignorewarnings
+-keep class * {
+  public private *;
+ }
 
 # https://github.com/flutter/flutter/issues/78625#issuecomment-804164524
 #-keep class io.flutter.app.** { *; }
