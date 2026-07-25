@@ -62,8 +62,8 @@ jobs:
           pod install
 
       - name: Install Fastlane
-        run: |
-          bundle install 
+        run: brew install fastlane
+
 
       - name: Fastlane TestFlight
         env:

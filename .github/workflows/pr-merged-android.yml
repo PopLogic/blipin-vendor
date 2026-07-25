@@ -78,7 +78,7 @@ jobs:
           EOF
 
       - name: Install Fastlane
-        run: bundle install
+        run: brew install fastlane
 
       - name: Run Fastlane lane (APK build + Firebase upload)
         run: bundle exec fastlane staging_validation_apk
