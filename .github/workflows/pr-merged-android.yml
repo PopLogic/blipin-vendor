@@ -38,7 +38,7 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          flutter build apk --release --flavor $DEPLOY_ENV -t lib/main_$DEPLOY_ENV.dart
+          flutter build apk --validation --flavor $DEPLOY_ENV -t lib/main_$DEPLOY_ENV.dart
 
       - name: Setup Firebase
         env:
