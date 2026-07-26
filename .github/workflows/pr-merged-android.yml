@@ -17,28 +17,28 @@ jobs:
   build:
     runs-on:
       group: Blipin-Vendor
-      labels: [ self-hosted ]
-    environment: staging
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      labels: [self-hosted]
 
-      - name: Set up JDK
+    environment: staging
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
-      - name: Install Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ vars.FLUTTER_VERSION }}
 
-      - name: Flutter Clean and Pub Get
+      - name: Flutter Pub Get
         run: |
           flutter clean
           flutter pub get
-          flutter build apk --validation --flavor $DEPLOY_ENV -t lib/main_$DEPLOY_ENV.dart
 
       - name: Setup Firebase
         env:
@@ -48,41 +48,51 @@ jobs:
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: |
           echo "$FIREBASE_CREDENTIALS_JSON" | base64 --decode > firebase_credentials.json
-          echo "$FIREBASE_OPTIONS_DART" | base64 --decode > lib/firebase_options_${{ env.DEPLOY_ENV }}.dart        
-          mkdir -p android/app/src/${{ env.DEPLOY_ENV }}
-          echo "$GOOGLE_SERVICES_JSON" | base64 --decode > android/app/src/${{ env.DEPLOY_ENV }}/google-services.json
+          echo "$FIREBASE_OPTIONS_DART" | base64 --decode > lib/firebase_options_${DEPLOY_ENV}.dart
+
+          mkdir -p android/app/src/${DEPLOY_ENV}
+          echo "$GOOGLE_SERVICES_JSON" | base64 --decode > android/app/src/${DEPLOY_ENV}/google-services.json
+
           echo "$FIREBASE_JSON" | base64 --decode > firebase.json
-#
-#      - name: Setup Map Api Key
-#        env:
-#          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
-#        run: |
-#          echo "GOOGLE_MAPS_API_KEY=$GOOGLE_MAPS_API_KEY" > secrets.properties
 
       - name: Setup Android Keystore
         env:
-          ANDROID_KEYSTORE_PATH: ${{ github.workspace }}/android/keystores/android_keystore.jks
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_VALIDATION_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_VALIDATION_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_VALIDATION_KEY_PASSWORD }}
         run: |
-          cd android
-          mkdir -p keystores
-          echo "${{ secrets.ANDROID_VALIDATION_KEYSTORE_JKS }}" | base64 --decode > ${{ env.ANDROID_KEYSTORE_PATH }}
-          echo "storeFile=${{ env.ANDROID_KEYSTORE_PATH }}" > keystores/key.properties
-          echo "storePassword=${{ env.ANDROID_KEYSTORE_PASSWORD }}" >> keystores/key.properties
-          echo "keyPassword=${{ env.ANDROID_KEY_PASSWORD }}" >> keystores/key.properties
-          echo "keyAlias=${{ env.ANDROID_KEY_ALIAS }}" >> keystores/key.properties
+          mkdir -p android/keystores
+
+          echo "${{ secrets.ANDROID_VALIDATION_KEYSTORE_JKS }}" \
+            | base64 --decode \
+            > android/keystores/android_keystore.jks
+
+          cat <<EOF > android/keystores/key.properties
+          storeFile=keystores/android_keystore.jks
+          storePassword=$ANDROID_KEYSTORE_PASSWORD
+          keyAlias=$ANDROID_KEY_ALIAS
+          keyPassword=$ANDROID_KEY_PASSWORD
+          EOF
+
+      - name: Build Flutter APK
+        run: |
+          flutter build apk \
+            --flavor $DEPLOY_ENV \
+            --release \
+            -t lib/main_${DEPLOY_ENV}.dart
+
+      - name: Verify APK
+        run: |
+          find build -name "*.apk"
 
       - name: Install Fastlane
         run: |
-            gem install bundler
-            bundle install
+          gem install bundler
+          bundle install
 
-      - name: Run Fastlane lane (APK build + Firebase upload)
-        run: |
-          cd android
-          bundle exec fastlane staging_validation_apk
+      - name: Upload to Firebase
+        working-directory: android
+        run: bundle exec fastlane upload_validation
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_CREDENTIALS_JSON_PATH: ${{ github.workspace }}/firebase_credentials.json
