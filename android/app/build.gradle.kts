@@ -27,9 +27,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    
+    kotlin {
+        jvmToolchain(17)
+    }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 
     defaultConfig {
@@ -70,7 +76,6 @@ android {
         create("validation") {
             initWith(getByName("release"))
             matchingFallbacks.add("release")
-            useProguard true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "validation-rules.pro",
