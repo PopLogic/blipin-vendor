@@ -86,6 +86,7 @@ jobs:
           find build -name "*.apk"
 
       - name: Install Fastlane
+        working-directory: android
         run: |
           gem install bundler
           bundle install

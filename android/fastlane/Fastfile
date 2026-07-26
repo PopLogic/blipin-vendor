@@ -12,9 +12,18 @@ platform :android do
   desc "Upload existing Flutter APK to Firebase"
   lane :upload_validation do
 
-    apk = Dir["../build/app/outputs/flutter-apk/*.apk"].first
+    apk = File.join(
+      ENV["GITHUB_WORKSPACE"],
+      "build",
+      "app",
+      "outputs",
+      "flutter-apk",
+      "app-staging-release.apk"
+    )
 
-    UI.user_error!("APK not found!") unless apk
+    UI.message(apk)
+
+    UI.user_error!("APK not found: #{apk}") unless File.exist?(apk)
 
     UI.success("Found APK:")
     UI.message(apk)
