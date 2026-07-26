@@ -68,12 +68,10 @@ jobs:
         run: |
           mkdir -p keystores
           echo "${{ secrets.ANDROID_VALIDATION_KEYSTORE_JKS }}" | base64 --decode > ${{ env.ANDROID_KEYSTORE_PATH }}
-          cat <<EOF > keystores/key.properties
-          storeFile=${{ env.ANDROID_KEYSTORE_PATH }}
-          storePassword=${{ env.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword=${{ env.ANDROID_KEY_PASSWORD }}
-          keyAlias=${{ env.ANDROID_KEY_ALIAS }}
-          EOF
+          echo "storeFile=${{ env.ANDROID_KEYSTORE_PATH }}" > keystores/key.properties
+          echo "storePassword=${{ env.ANDROID_KEYSTORE_PASSWORD }}" >> keystores/key.properties
+          echo "keyPassword=${{ env.ANDROID_KEY_PASSWORD }}" >> keystores/key.properties
+          echo "keyAlias=${{ env.ANDROID_KEY_ALIAS }}" >> keystores/key.properties
 
       - name: Install Fastlane
         run: |
