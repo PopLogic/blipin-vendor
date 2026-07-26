@@ -21,8 +21,6 @@ platform :android do
       "app-staging-release.apk"
     )
 
-    UI.message(apk)
-
     UI.user_error!("APK not found: #{apk}") unless File.exist?(apk)
 
     UI.success("Found APK:")
@@ -31,7 +29,7 @@ platform :android do
     last_release = firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID"],
       service_credentials_file: ENV["FIREBASE_CREDENTIALS_JSON_PATH"],
-      groups: "internal-testers",
+      groups: "internal-tester",
       release_notes: get_branch_last_commit_with_ui,
       apk_path: apk
     )

@@ -44,16 +44,12 @@ jobs:
         env:
           FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_CREDENTIALS_JSON }}
           FIREBASE_OPTIONS_DART: ${{ secrets.FIREBASE_OPTIONS_DART }}
-          FIREBASE_JSON: ${{ secrets.FIREBASE_JSON }}
           GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
         run: |
           echo "$FIREBASE_CREDENTIALS_JSON" | base64 --decode > firebase_credentials.json
           echo "$FIREBASE_OPTIONS_DART" | base64 --decode > lib/firebase_options_${DEPLOY_ENV}.dart
-
           mkdir -p android/app/src/${DEPLOY_ENV}
           echo "$GOOGLE_SERVICES_JSON" | base64 --decode > android/app/src/${DEPLOY_ENV}/google-services.json
-
-          echo "$FIREBASE_JSON" | base64 --decode > firebase.json
 
       - name: Setup Android Keystore
         env:
@@ -93,7 +89,7 @@ jobs:
 
       - name: Upload to Firebase
         working-directory: android
-        run: bundle exec fastlane upload_validation
+        run: bundle exec fastlane upload_validation --verbose
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_CREDENTIALS_JSON_PATH: ${{ github.workspace }}/firebase_credentials.json
