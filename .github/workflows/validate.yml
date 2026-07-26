@@ -2,11 +2,6 @@ name: ios-build-validation
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-      - master
-      - develop
 
 jobs:
   build:
