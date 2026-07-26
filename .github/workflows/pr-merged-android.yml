@@ -38,8 +38,6 @@ jobs:
         run: |
           flutter clean
           flutter pub get
-          # Added `--flavor staging` and `--release` to ensure Flutter generates 
-          # framework configs matching the Xcode staging scheme
           flutter build apk --release --flavor $DEPLOY_ENV -t lib/main_$DEPLOY_ENV.dart
 
       - name: Setup Firebase

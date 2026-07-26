@@ -70,12 +70,14 @@ android {
         create("validation") {
             initWith(getByName("release"))
             matchingFallbacks.add("release")
+            useProguard true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "validation-rules.pro",
             )
             signingConfig = signingConfigs.getByName("validation")
             isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
 }
