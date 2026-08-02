@@ -1,5 +1,6 @@
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/pages/create_menu_success_page/create_menu_success_page.dart';
+import 'package:blipin_vendor/pages/privacy_policy_page/privacy_policy_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -22,6 +23,11 @@ class LegalTermsPage extends HookWidget {
       if (canContinue) {
         await CreateMenuSuccessPage.enterPage(context);
       }
+    }
+
+    Future<void> openPrivacyPolicy() async {
+      final accepted = await PrivacyPolicyPage.enterPage(context);
+      if (accepted == true) acceptedPrivacy.value = true;
     }
 
     return Scaffold(
@@ -102,7 +108,7 @@ class LegalTermsPage extends HookWidget {
                       selected: acceptedPrivacy.value,
                       onTap: () =>
                           acceptedPrivacy.value = !acceptedPrivacy.value,
-                      onOpen: () {},
+                      onOpen: openPrivacyPolicy,
                     ),
                     const SizedBox(height: 16),
                     _TermsCard(
