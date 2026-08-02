@@ -131,5 +131,32 @@
   "goHomeButton": "Go Home",
   "@goHomeButton": {
     "description": "Go home button text"
+  },
+  "accountNamePageTitle": "Enter your name",
+  "@accountNamePageTitle": {
+    "description": "Account name page heading"
+  },
+  "accountNameLabel": "Account Name",
+  "@accountNameLabel": {
+    "description": "Account name field label"
+  },
+  "accountNameHint": "Enter your account name",
+  "@accountNameHint": {
+    "description": "Account name field hint"
+  },
+  "accountNameAddButton": "Add",
+  "@accountNameAddButton": {
+    "description": "Add account name button text"
+  },
+  "skipButton": "Skip",
+  "@skipButton": {
+    "description": "Skip button text"
+  },
+  "accountNameCharacterCount": "{count}/150",
+  "@accountNameCharacterCount": {
+    "description": "Account name character count",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
   }
 }

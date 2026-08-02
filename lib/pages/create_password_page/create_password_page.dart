@@ -1,4 +1,5 @@
 import 'package:blipin_vendor/generated/app_localizations.dart';
+import 'package:blipin_vendor/pages/account_name_page/account_name_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -185,7 +186,9 @@ class CreatePasswordPage extends HookWidget {
                           width: double.infinity,
                           height: 52,
                           child: ElevatedButton(
-                            onPressed: vm.canSubmit ? () {} : null,
+                            onPressed: vm.canSubmit
+                                ? () => AccountNamePage.enterPage(context)
+                                : null,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: vm.canSubmit
                                   ? const Color(0xFFE07820)

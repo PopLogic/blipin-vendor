@@ -131,5 +131,32 @@
   "goHomeButton": "前往首頁",
   "@goHomeButton": {
     "description": "Go home button text"
+  },
+  "accountNamePageTitle": "請輸入您的名稱",
+  "@accountNamePageTitle": {
+    "description": "Account name page heading"
+  },
+  "accountNameLabel": "帳號名稱",
+  "@accountNameLabel": {
+    "description": "Account name field label"
+  },
+  "accountNameHint": "請輸入您的帳號名稱",
+  "@accountNameHint": {
+    "description": "Account name field hint"
+  },
+  "accountNameAddButton": "新增",
+  "@accountNameAddButton": {
+    "description": "Add account name button text"
+  },
+  "skipButton": "略過",
+  "@skipButton": {
+    "description": "Skip button text"
+  },
+  "accountNameCharacterCount": "{count}/150",
+  "@accountNameCharacterCount": {
+    "description": "Account name character count",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
   }
 }
