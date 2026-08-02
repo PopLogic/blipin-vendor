@@ -1,5 +1,6 @@
 import 'package:blipin_vendor/pages/splash_page/entry_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
+import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class CreateMenuSuccessPage extends StatelessWidget {
@@ -11,6 +12,7 @@ class CreateMenuSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -28,8 +30,8 @@ class CreateMenuSuccessPage extends StatelessWidget {
                       onPressed: () => Navigator.maybePop(context),
                     ),
                   ),
-                  const Text(
-                    '建立菜單',
+                  Text(
+                    l10n.createMenuTitle,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -46,13 +48,17 @@ class CreateMenuSuccessPage extends StatelessWidget {
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: const [
-                      Icon(Icons.local_shipping_outlined, size: 86, color: Color(0xFF5A5A5A)),
+                      Icon(
+                        Icons.local_shipping_outlined,
+                        size: 86,
+                        color: Color(0xFF5A5A5A),
+                      ),
                       Icon(Icons.verified, size: 30, color: Color(0xFFFF6A00)),
                     ],
                   ),
                   const SizedBox(height: 14),
-                  const Text(
-                    '創建成功！',
+                  Text(
+                    l10n.createMenuSuccessTitle,
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.w800,
@@ -78,8 +84,8 @@ class CreateMenuSuccessPage extends StatelessWidget {
                     ),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    '前往首頁',
+                  child: Text(
+                    l10n.goHomeButton,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,

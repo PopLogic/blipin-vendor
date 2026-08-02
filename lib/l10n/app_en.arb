@@ -63,6 +63,73 @@
   "createAccountTitle": "Create Account",
   "@createAccountTitle": {
     "description": "Create account page title in app bar"
+  },
+  "createPasswordTitle": "Create Your Password",
+  "@createPasswordTitle": {
+    "description": "Create password page heading"
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Password field label"
+  },
+  "passwordHint": "Please enter your password",
+  "@passwordHint": {
+    "description": "Password field hint text"
+  },
+  "passwordMinLengthRule": "At least 8 characters",
+  "@passwordMinLengthRule": {
+    "description": "Minimum password length rule"
+  },
+  "passwordUpperLowerRule": "Uppercase and lowercase letters",
+  "@passwordUpperLowerRule": {
+    "description": "Password upper and lower case rule"
+  },
+  "passwordNumberRule": "At least 1 number",
+  "@passwordNumberRule": {
+    "description": "Password number rule"
+  },
+  "passwordSpecialRule": "At least 1 special character",
+  "@passwordSpecialRule": {
+    "description": "Password special character rule"
+  },
+  "confirmPasswordLabel": "Confirm Password",
+  "@confirmPasswordLabel": {
+    "description": "Confirm password field label"
+  },
+  "passwordMismatchError": "Passwords do not match",
+  "@passwordMismatchError": {
+    "description": "Password mismatch error"
+  },
+  "nextButton": "Next",
+  "@nextButton": {
+    "description": "Next button text"
+  },
+  "passwordLoginTitle": "Sign In",
+  "@passwordLoginTitle": {
+    "description": "Password login page app bar title"
+  },
+  "passwordLoginHeading": "Enter your password",
+  "@passwordLoginHeading": {
+    "description": "Password login page heading"
+  },
+  "passwordInputError": "Incorrect password",
+  "@passwordInputError": {
+    "description": "Password login error message"
+  },
+  "forgotPassword": "Forgot password",
+  "@forgotPassword": {
+    "description": "Forgot password text"
+  },
+  "createMenuTitle": "Create Menu",
+  "@createMenuTitle": {
+    "description": "Create menu page title"
+  },
+  "createMenuSuccessTitle": "Created Successfully!",
+  "@createMenuSuccessTitle": {
+    "description": "Create menu success message"
+  },
+  "goHomeButton": "Go Home",
+  "@goHomeButton": {
+    "description": "Go home button text"
   }
 }
-

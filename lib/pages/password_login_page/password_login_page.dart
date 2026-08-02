@@ -1,3 +1,4 @@
+import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,7 +10,10 @@ class PasswordLoginPage extends HookWidget {
 
   final PasswordLoginViewModel vm;
 
-  static Future<void> enterPage(BuildContext context, {required String account}) async {
+  static Future<void> enterPage(
+    BuildContext context, {
+    required String account,
+  }) async {
     final vm = PasswordLoginViewModel();
     vm.initialize(account: account);
     final page = PasswordLoginPage(vm: vm);
@@ -22,6 +26,7 @@ class PasswordLoginPage extends HookWidget {
       return vm.dispose;
     }, [vm]);
     useListenable(vm);
+    final l10n = AppLocalizations.of(context)!;
 
     final route = vm.consumePendingRoute();
     if (route != null) {
@@ -47,8 +52,8 @@ class PasswordLoginPage extends HookWidget {
                       onPressed: () => Navigator.maybePop(context),
                     ),
                   ),
-                  const Text(
-                    '登入',
+                  Text(
+                    l10n.passwordLoginTitle,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -65,8 +70,8 @@ class PasswordLoginPage extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 28),
-                    const Text(
-                      '請輸入您的密碼',
+                    Text(
+                      l10n.passwordLoginHeading,
                       style: TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.w700,
@@ -74,8 +79,8 @@ class PasswordLoginPage extends HookWidget {
                       ),
                     ),
                     const SizedBox(height: 28),
-                    const Text(
-                      '密碼 *',
+                    Text(
+                      '${l10n.passwordLabel} ${l10n.requiredFieldMark}',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -88,12 +93,15 @@ class PasswordLoginPage extends HookWidget {
                       obscureText: vm.obscurePassword,
                       onChanged: vm.onPasswordChanged,
                       decoration: InputDecoration(
-                        hintText: '請輸入密碼',
+                        hintText: l10n.passwordHint,
                         hintStyle: const TextStyle(
                           color: Color(0xFFB4B4B4),
                           fontSize: 16,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 14,
+                        ),
                         suffixIcon: IconButton(
                           onPressed: vm.togglePasswordObscure,
                           icon: Icon(
@@ -132,12 +140,12 @@ class PasswordLoginPage extends HookWidget {
                     ),
                     if (vm.hasError) ...[
                       const SizedBox(height: 10),
-                      const Row(
+                      Row(
                         children: [
                           Icon(Icons.error, color: Color(0xFFD84E64), size: 16),
                           SizedBox(width: 6),
                           Text(
-                            '密碼輸入錯誤',
+                            l10n.passwordInputError,
                             style: TextStyle(
                               fontSize: 14,
                               color: Color(0xFFD84E64),
@@ -148,9 +156,9 @@ class PasswordLoginPage extends HookWidget {
                       ),
                     ],
                     const SizedBox(height: 24),
-                    const Center(
+                    Center(
                       child: Text(
-                        '忘記密碼',
+                        l10n.forgotPassword,
                         style: TextStyle(
                           fontSize: 18,
                           color: Color(0xFF9A9A9A),
@@ -174,8 +182,8 @@ class PasswordLoginPage extends HookWidget {
                           ),
                           elevation: 0,
                         ),
-                        child: const Text(
-                          '下一步',
+                        child: Text(
+                          l10n.nextButton,
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.white,
