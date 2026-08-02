@@ -186,5 +186,17 @@
   "legalTermsSeparator": ", ",
   "@legalTermsSeparator": {
     "description": "Separator between legal document links"
+  },
+  "privacyPolicyPageTitle": "Blipin Privacy Policy",
+  "@privacyPolicyPageTitle": {
+    "description": "Privacy policy page title"
+  },
+  "privacyPolicyAgreeButton": "Agree",
+  "@privacyPolicyAgreeButton": {
+    "description": "Privacy policy agree button text"
+  },
+  "privacyPolicyContent": "Welcome to Blipin. To help you use our services with confidence, this Privacy Policy explains how we protect your rights and handle information collected when you use our website and app. Please read the following carefully:\n\n1. Scope of this Privacy Policy\nThis policy explains how we handle personally identifiable information collected when you use our services. It does not apply to linked websites outside Blipin or to people who are not engaged or managed by Blipin.\n\n2. Collection, processing, and use of personal data\nWhen you visit our website or use our features, we may ask for information necessary for the specific service and use it only for that purpose unless you provide written consent for another use.\n\n• We may retain your name, email address, contact details, and social links, and access camera or photo permissions after you authorize us.\n• Our servers may record your IP address, usage time, browsing activity, and click records to improve our services. These records are for internal use and are not disclosed publicly.\n• We may use third-party platforms such as Google Analytics and Firebase for anonymized traffic analysis; individuals are not identified.\n• You may request correction or deletion of your account and personal information at any time.\n\n3. Data protection\nOur systems use firewalls, antivirus systems, and other security measures to protect our services and your personal data. Only authorized personnel may access personal data, and relevant staff are bound by confidentiality agreements.\n\n4. External links\nOur website may provide links to other websites. Those websites are not covered by this Privacy Policy, so please review their privacy policies separately.\n\n5. Sharing personal data with third parties\nWe will not provide, exchange, rent, or sell your personal data to other individuals, groups, companies, or public agencies unless required by law, contract, your written consent, or to protect life, body, liberty, or property.\n\n6. Changes to this Privacy Policy\nWe may update this Privacy Policy as needed. The latest version will be published in the Privacy Policy section of your account information page.\n\n7. Contact\nIf you have questions or would like to request a change or removal of personal data, please use Contact Us in your account information page or email support@blipin.com.",
+  "@privacyPolicyContent": {
+    "description": "Privacy policy content"
   }
 }
