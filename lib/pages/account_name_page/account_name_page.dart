@@ -1,5 +1,5 @@
 import 'package:blipin_vendor/generated/app_localizations.dart';
-import 'package:blipin_vendor/pages/create_menu_success_page/create_menu_success_page.dart';
+import 'package:blipin_vendor/pages/legal_terms_page/legal_terms_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -20,7 +20,7 @@ class AccountNamePage extends HookWidget {
     final hasName = controller.text.trim().isNotEmpty;
 
     Future<void> finish() async {
-      await CreateMenuSuccessPage.enterPage(context);
+      await LegalTermsPage.enterPage(context);
     }
 
     return Scaffold(
