@@ -158,5 +158,33 @@
     "placeholders": {
       "count": { "type": "int" }
     }
+  },
+  "legalTermsTitle": "Legal Terms and Platform Rules",
+  "@legalTermsTitle": {
+    "description": "Legal terms page title"
+  },
+  "legalTermsIntro": "We care deeply about your personal information and privacy. To better protect your rights, before using the Blipin app services, please read",
+  "@legalTermsIntro": {
+    "description": "Legal terms introduction"
+  },
+  "serviceAgreementLink": "Blipin User Service Agreement",
+  "@serviceAgreementLink": {
+    "description": "Service agreement link label"
+  },
+  "privacyPolicyLink": "Blipin User Privacy Policy",
+  "@privacyPolicyLink": {
+    "description": "Privacy policy link label"
+  },
+  "legalTermsOutro": "in full so that you understand how we provide services and protect your lawful rights.",
+  "@legalTermsOutro": {
+    "description": "Legal terms conclusion"
+  },
+  "agreeTermsButton": "Agree to the Above",
+  "@agreeTermsButton": {
+    "description": "Agree to terms button text"
+  },
+  "legalTermsSeparator": ", ",
+  "@legalTermsSeparator": {
+    "description": "Separator between legal document links"
   }
 }

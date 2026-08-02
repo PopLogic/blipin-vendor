@@ -158,5 +158,33 @@
     "placeholders": {
       "count": { "type": "int" }
     }
+  },
+  "legalTermsTitle": "法律條款與平台規則",
+  "@legalTermsTitle": {
+    "description": "Legal terms page title"
+  },
+  "legalTermsIntro": "我們非常重視您的個人資訊及隱私保護，為了更好地保障您的個人權益，在您使用Blipin APP服務之前，請務必認真閱讀",
+  "@legalTermsIntro": {
+    "description": "Legal terms introduction"
+  },
+  "serviceAgreementLink": "《Blipin使用者服務協議》",
+  "@serviceAgreementLink": {
+    "description": "Service agreement link label"
+  },
+  "privacyPolicyLink": "《Blipin使用者隱私政策》",
+  "@privacyPolicyLink": {
+    "description": "Privacy policy link label"
+  },
+  "legalTermsOutro": "的全部條款，以便您瞭解我們如何向您提供服務，保障您的合法權益",
+  "@legalTermsOutro": {
+    "description": "Legal terms conclusion"
+  },
+  "agreeTermsButton": "同意上述事項",
+  "@agreeTermsButton": {
+    "description": "Agree to terms button text"
+  },
+  "legalTermsSeparator": "、",
+  "@legalTermsSeparator": {
+    "description": "Separator between legal document links"
   }
 }
