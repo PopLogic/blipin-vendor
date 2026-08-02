@@ -63,6 +63,73 @@
   "createAccountTitle": "建立新帳號",
   "@createAccountTitle": {
     "description": "Create account page title in app bar"
+  },
+  "createPasswordTitle": "建立您的密碼",
+  "@createPasswordTitle": {
+    "description": "Create password page heading"
+  },
+  "passwordLabel": "密碼",
+  "@passwordLabel": {
+    "description": "Password field label"
+  },
+  "passwordHint": "請輸入密碼",
+  "@passwordHint": {
+    "description": "Password field hint text"
+  },
+  "passwordMinLengthRule": "長度至少8字元",
+  "@passwordMinLengthRule": {
+    "description": "Minimum password length rule"
+  },
+  "passwordUpperLowerRule": "半形英文字母大小寫",
+  "@passwordUpperLowerRule": {
+    "description": "Password upper and lower case rule"
+  },
+  "passwordNumberRule": "至少1數字",
+  "@passwordNumberRule": {
+    "description": "Password number rule"
+  },
+  "passwordSpecialRule": "包含1特殊符號",
+  "@passwordSpecialRule": {
+    "description": "Password special character rule"
+  },
+  "confirmPasswordLabel": "確認密碼",
+  "@confirmPasswordLabel": {
+    "description": "Confirm password field label"
+  },
+  "passwordMismatchError": "密碼不相符",
+  "@passwordMismatchError": {
+    "description": "Password mismatch error"
+  },
+  "nextButton": "下一步",
+  "@nextButton": {
+    "description": "Next button text"
+  },
+  "passwordLoginTitle": "登入",
+  "@passwordLoginTitle": {
+    "description": "Password login page app bar title"
+  },
+  "passwordLoginHeading": "請輸入您的密碼",
+  "@passwordLoginHeading": {
+    "description": "Password login page heading"
+  },
+  "passwordInputError": "密碼輸入錯誤",
+  "@passwordInputError": {
+    "description": "Password login error message"
+  },
+  "forgotPassword": "忘記密碼",
+  "@forgotPassword": {
+    "description": "Forgot password text"
+  },
+  "createMenuTitle": "建立菜單",
+  "@createMenuTitle": {
+    "description": "Create menu page title"
+  },
+  "createMenuSuccessTitle": "創建成功！",
+  "@createMenuSuccessTitle": {
+    "description": "Create menu success message"
+  },
+  "goHomeButton": "前往首頁",
+  "@goHomeButton": {
+    "description": "Go home button text"
   }
 }
-

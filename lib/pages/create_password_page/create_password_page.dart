@@ -67,8 +67,8 @@ class CreatePasswordPage extends HookWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 36),
-                        const Text(
-                          '建立您的密碼',
+                        Text(
+                          l10n.createPasswordTitle,
                           style: TextStyle(
                             fontSize: 34,
                             fontWeight: FontWeight.bold,
@@ -76,7 +76,10 @@ class CreatePasswordPage extends HookWidget {
                           ),
                         ),
                         const SizedBox(height: 44),
-                        _FieldLabel(text: '密碼${l10n.requiredFieldMark}'),
+                        _FieldLabel(
+                          text:
+                              '${l10n.passwordLabel}${l10n.requiredFieldMark}',
+                        ),
                         const SizedBox(height: 8),
                         TextField(
                           controller: vm.passwordController,
@@ -100,7 +103,9 @@ class CreatePasswordPage extends HookWidget {
                             3,
                             (index) => Expanded(
                               child: Container(
-                                margin: EdgeInsets.only(right: index == 2 ? 0 : 8),
+                                margin: EdgeInsets.only(
+                                  right: index == 2 ? 0 : 8,
+                                ),
                                 height: 4,
                                 decoration: BoxDecoration(
                                   color: vm.strengthColor(index),
@@ -112,27 +117,30 @@ class CreatePasswordPage extends HookWidget {
                         ),
                         const SizedBox(height: 12),
                         _RuleRow(
-                          text: '長度至少8字元',
+                          text: l10n.passwordMinLengthRule,
                           matched: vm.hasMinLength,
                           hasInput: vm.password.isNotEmpty,
                         ),
                         _RuleRow(
-                          text: '半形英文字母大小寫',
+                          text: l10n.passwordUpperLowerRule,
                           matched: vm.hasUpperAndLowerCase,
                           hasInput: vm.password.isNotEmpty,
                         ),
                         _RuleRow(
-                          text: '至少1數字',
+                          text: l10n.passwordNumberRule,
                           matched: vm.hasNumber,
                           hasInput: vm.password.isNotEmpty,
                         ),
                         _RuleRow(
-                          text: '包含1特殊符號',
+                          text: l10n.passwordSpecialRule,
                           matched: vm.hasSpecialChar,
                           hasInput: vm.password.isNotEmpty,
                         ),
                         const SizedBox(height: 34),
-                        _FieldLabel(text: '確認密碼${l10n.requiredFieldMark}'),
+                        _FieldLabel(
+                          text:
+                              '${l10n.confirmPasswordLabel}${l10n.requiredFieldMark}',
+                        ),
                         const SizedBox(height: 8),
                         TextField(
                           controller: vm.confirmPasswordController,
@@ -153,12 +161,16 @@ class CreatePasswordPage extends HookWidget {
                         ),
                         if (vm.showMismatchError) ...[
                           const SizedBox(height: 10),
-                          const Row(
+                          Row(
                             children: [
-                              Icon(Icons.error, color: Color(0xFFE84545), size: 16),
+                              Icon(
+                                Icons.error,
+                                color: Color(0xFFE84545),
+                                size: 16,
+                              ),
                               SizedBox(width: 6),
                               Text(
-                                '密碼不相符',
+                                l10n.passwordMismatchError,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: Color(0xFFE84545),
@@ -184,8 +196,8 @@ class CreatePasswordPage extends HookWidget {
                               ),
                               elevation: 0,
                             ),
-                            child: const Text(
-                              '下一步',
+                            child: Text(
+                              l10n.nextButton,
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -211,8 +223,9 @@ class CreatePasswordPage extends HookWidget {
     required Widget suffixIcon,
     bool showErrorBorder = false,
   }) {
-    final borderColor =
-        showErrorBorder ? const Color(0xFFE84545) : const Color(0xFFD9D9D9);
+    final borderColor = showErrorBorder
+        ? const Color(0xFFE84545)
+        : const Color(0xFFD9D9D9);
     return InputDecoration(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       suffixIcon: suffixIcon,
@@ -273,11 +286,7 @@ class _RuleRow extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: Row(
         children: [
-          Icon(
-            Icons.check_circle,
-            size: 16,
-            color: color,
-          ),
+          Icon(Icons.check_circle, size: 16, color: color),
           const SizedBox(width: 8),
           Text(
             text,
