@@ -1,5 +1,5 @@
 import 'package:blipin_vendor/generated/app_localizations.dart';
-import 'package:blipin_vendor/pages/account_name_page/account_name_page.dart';
+import 'package:blipin_vendor/pages/register/account_name_page/account_name_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

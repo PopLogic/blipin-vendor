@@ -79,6 +79,8 @@ pubspec.lock
 # VS Code
 .vscode/
 
-
 # Generated l10n files
 lib/generated/
+
+# FVM Version Cache
+.fvm/

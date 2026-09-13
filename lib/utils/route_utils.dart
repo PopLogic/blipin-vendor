@@ -1,7 +1,7 @@
-import 'package:blipin_vendor/pages/verification_page/verification_page.dart';
-import 'package:blipin_vendor/pages/create_password_page/create_password_page.dart';
 import 'package:blipin_vendor/pages/password_login_page/password_login_page.dart';
 import 'package:blipin_vendor/pages/create_menu_success_page/create_menu_success_page.dart';
+import 'package:blipin_vendor/pages/register/create_password_page/create_password_page.dart';
+import 'package:blipin_vendor/pages/register/verification_page/verification_page.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppRoute {
