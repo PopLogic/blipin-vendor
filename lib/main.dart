@@ -6,8 +6,17 @@ import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 
 Future<void> runMainApp({required FirebaseOptions firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
-  // * Initialize Firebase
-  await Firebase.initializeApp(options: firebaseOptions);
+  // iOS configures the default Firebase app from GoogleService-Info.plist.
+  // Only initialize it from Dart when no native app has been created yet.
+  if (Firebase.apps.isEmpty) {
+    try {
+      await Firebase.initializeApp(options: firebaseOptions);
+    } on FirebaseException catch (error) {
+      if (error.code != 'duplicate-app') {
+        rethrow;
+      }
+    }
+  }
   runApp(const MyApp());
 }
 
@@ -25,7 +34,9 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
       home: const SplashPage(),
     );
   }
