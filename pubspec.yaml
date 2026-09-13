@@ -40,6 +40,7 @@ dependencies:
   hooks_riverpod: ^2.6.1
   flutter_hooks: ^0.21.0
   firebase_core: ^4.12.1
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/splash screen.json
     - assets/development/ # TODO: Should load assets from the correct flavor folder
     - assets/staging/
     - assets/production/

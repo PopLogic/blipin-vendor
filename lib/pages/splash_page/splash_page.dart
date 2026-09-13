@@ -1,6 +1,8 @@
 import 'package:blipin_vendor/flavors.dart';
+import 'package:blipin_vendor/utils/design_size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:blipin_vendor/pages/splash_page/entry_page.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -22,10 +24,17 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFF1E1E1E),
       body: Center(
-        child: BlipinLogo(size: LogoSize.large),
+        child: SizedBox(
+          height: 300.h(context),
+          child: Lottie.asset(
+            'assets/splash screen.json',
+            fit: BoxFit.contain,
+            repeat: false,
+          ),
+        ),
       ),
     );
   }
@@ -42,11 +51,7 @@ class BlipinLogo extends StatelessWidget {
     final double imageWidth = size == LogoSize.large ? 200 : 140;
     return FittedBox(
       clipBehavior: Clip.hardEdge,
-      child: Image.asset(
-        F.appIcon,
-        width: imageWidth,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(F.appIcon, width: imageWidth, fit: BoxFit.cover),
     );
   }
 }
