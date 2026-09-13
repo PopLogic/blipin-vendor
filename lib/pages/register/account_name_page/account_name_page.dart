@@ -1,8 +1,8 @@
 import 'package:blipin_vendor/generated/app_localizations.dart';
-import 'package:blipin_vendor/pages/legal_terms_page/legal_terms_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:blipin_vendor/pages/register/legal_terms_page/legal_terms_page.dart';
 
 class AccountNamePage extends HookWidget {
   const AccountNamePage({super.key});

@@ -1,8 +1,8 @@
+import 'package:blipin_vendor/pages/register/verification_page/verification_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
-import 'package:blipin_vendor/pages/verification_page/verification_view_model.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 
 class VerificationPage extends HookWidget {

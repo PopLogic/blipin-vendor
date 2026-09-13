@@ -8,7 +8,7 @@ class QuickStartViewModel extends ChangeNotifier {
 
   AppRoute onContinuePressed() {
     final email = emailController.text.trim();
-    if (email == 'a') {
+    if (email == 'test') {
       return PasswordLoginRoute(account: email);
     }
     return VerificationRoute(email: email);

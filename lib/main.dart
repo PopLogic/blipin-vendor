@@ -4,8 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 
-import 'flavors.dart';
-
 Future<void> runMainApp({required FirebaseOptions firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
   // * Initialize Firebase
