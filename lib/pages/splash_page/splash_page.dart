@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
         child: SizedBox(
           height: 300.h(context),
           child: Lottie.asset(
-            'assets/splash screen.json',
+            'assets/animation/splash screen.json',
             fit: BoxFit.contain,
             repeat: false,
           ),
