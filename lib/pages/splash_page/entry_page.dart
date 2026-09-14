@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:blipin_vendor/pages/splash_page/splash_page.dart';
 import 'package:blipin_vendor/pages/quick_start_page/quick_start_page.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
@@ -7,7 +8,10 @@ import 'package:blipin_vendor/utils/route_utils.dart';
 class EntryPage extends StatelessWidget {
   const EntryPage({super.key});
 
-  static Future<void> enterPage(BuildContext context, {bool replaceCurrent = false}) async {
+  static Future<void> enterPage(
+    BuildContext context, {
+    bool replaceCurrent = false,
+  }) async {
     final page = const EntryPage();
     if (replaceCurrent) {
       await RouteUtils.replaceWithPage(context, page);
@@ -37,14 +41,10 @@ class EntryPage extends StatelessWidget {
                   // Truck + pin icon centered
                   Center(
                     child: SizedBox(
-                      width: 72,
-                      height: 72,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: const [
-                          Icon(Icons.location_on, color: Colors.white, size: 72),
-                          Positioned(bottom: 4, left: 4, child: Icon(Icons.local_shipping, color: Color(0xFFE07820), size: 38)),
-                        ],
+                      width: 48,
+                      height: 53,
+                      child: SvgPicture.asset(
+                        'assets/animation/entry_vehicle.svg',
                       ),
                     ),
                   ),
@@ -60,10 +60,18 @@ class EntryPage extends StatelessWidget {
                   onPressed: () {
                     QuickStartPage.enterPage(context);
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFE07820), shape: StadiumBorder(), elevation: 0),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFE07820),
+                    shape: StadiumBorder(),
+                    elevation: 0,
+                  ),
                   child: Text(
                     l10n.entryPageStartButton,
-                    style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
