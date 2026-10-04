@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:blipin_vendor/generated/app_localizations.dart';
+import 'package:blipin_vendor/pages/create_food_truck_page/create_food_truck_page.dart';
 import 'package:flutter/material.dart';
 
 class LauncherPage extends StatelessWidget {
@@ -48,7 +49,9 @@ class LauncherPage extends StatelessWidget {
               left: 20,
               right: 20,
               child: _CreateTruckAlert(
-                onPressed: onCreateTruck ?? () {},
+                onPressed:
+                    onCreateTruck ??
+                    () => CreateFoodTruckPage.enterPage(context),
                 l10n: l10n,
               ),
             ),

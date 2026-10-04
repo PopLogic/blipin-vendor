@@ -132,6 +132,35 @@
   "@goHomeButton": {
     "description": "Go home button text"
   },
+  "createFoodTruckTitle": "建立您的攤車",
+  "foodTruckInformationSection": "攤車資訊",
+  "foodTruckNameLabel": "攤車名稱",
+  "foodTruckNameHint": "請輸入攤車名稱",
+  "foodTruckIntroductionLabel": "攤車簡介",
+  "foodTruckIntroductionHint": "請簡述您的攤車",
+  "foodTruckBusinessTypeLabel": "攤車營業類型",
+  "foodTruckBusinessTypeHint": "請選擇攤車營業類型",
+  "foodTruckBrandInformationSection": "品牌資訊",
+  "foodTruckSocialLabel": "社群",
+  "foodTruckLineHint": "請輸入Line連結",
+  "foodTruckInstagramHint": "請輸入Instagram連結",
+  "foodTruckFacebookHint": "請輸入Facebook連結",
+  "foodTruckOtherSocialHint": "請輸入相關社群連結",
+  "foodTruckBrandLogoLabel": "品牌logo",
+  "foodTruckBrandCoverLabel": "品牌封面",
+  "foodTruckGalleryLabel": "相簿",
+  "foodTruckUploadRule": "請上傳jpg、png，最大10MB",
+  "foodTruckUploadLogoButton": "上傳logo",
+  "foodTruckUploadCoverButton": "上傳封面",
+  "foodTruckCoverDescription": "第一張圖片將顯示於首頁",
+  "foodTruckCoverCount": "({count}/3)",
+  "@foodTruckCoverCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "foodTruckGalleryCount": "({count}/10)",
+  "@foodTruckGalleryCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
   "homeCreateFirstTruckTitle": "開始建立你的第一台攤車！",
   "homeCreateFirstTruckSubtitle": "建立後即可解鎖其他功能",
   "homeCreateTruckButton": "前往建立攤車",
