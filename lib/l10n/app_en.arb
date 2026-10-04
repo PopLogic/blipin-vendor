@@ -132,6 +132,25 @@
   "@goHomeButton": {
     "description": "Go home button text"
   },
+  "homeCreateFirstTruckTitle": "Create your first food truck!",
+  "homeCreateFirstTruckSubtitle": "Create it to unlock other features",
+  "homeCreateTruckButton": "Create food truck",
+  "homeTruckName": "Truck name",
+  "homeTruckIntroduction": "Truck introduction",
+  "homeTruckBusinessType": "Business type",
+  "homeSocialLinks": "Social links",
+  "homeBrandLogo": "Brand logo",
+  "homeBrandCover": "Brand cover photo",
+  "homeTruckPhotos": "Truck photos",
+  "homeScheduleTab": "Schedule",
+  "homeMenuTab": "Menu",
+  "homeDataTab": "Data",
+  "homeProfileTab": "Profile",
+  "homeCurrentScheduleTab": "Current",
+  "homeTodayScheduleTab": "Today",
+  "homeClosed": "Closed",
+  "homeBusinessInformation": "Business information",
+  "homeSaleItems": "Sale items",
   "accountNamePageTitle": "Enter your name",
   "@accountNamePageTitle": {
     "description": "Account name page heading"
