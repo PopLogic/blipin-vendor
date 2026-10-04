@@ -1,4 +1,4 @@
-import 'package:blipin_vendor/pages/splash_page/entry_page.dart';
+import 'package:blipin_vendor/pages/launcher_page/launcher_page.dart';
 import 'package:blipin_vendor/utils/route_utils.dart';
 import 'package:blipin_vendor/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +75,7 @@ class CreateMenuSuccessPage extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   onPressed: () {
-                    EntryPage.enterPage(context, replaceCurrent: true);
+                    LauncherPage.enterPage(context, clearStack: true);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFF6A00),

@@ -132,6 +132,25 @@
   "@goHomeButton": {
     "description": "Go home button text"
   },
+  "homeCreateFirstTruckTitle": "開始建立你的第一台攤車！",
+  "homeCreateFirstTruckSubtitle": "建立後即可解鎖其他功能",
+  "homeCreateTruckButton": "前往建立攤車",
+  "homeTruckName": "攤車名稱",
+  "homeTruckIntroduction": "攤車簡介",
+  "homeTruckBusinessType": "攤車營業類型",
+  "homeSocialLinks": "社群連結",
+  "homeBrandLogo": "品牌Logo",
+  "homeBrandCover": "品牌封面照",
+  "homeTruckPhotos": "攤車照片",
+  "homeScheduleTab": "排程",
+  "homeMenuTab": "菜單",
+  "homeDataTab": "數據",
+  "homeProfileTab": "個人",
+  "homeCurrentScheduleTab": "當前排程",
+  "homeTodayScheduleTab": "今日排程",
+  "homeClosed": "尚未營業",
+  "homeBusinessInformation": "營業資訊",
+  "homeSaleItems": "販售品項",
   "accountNamePageTitle": "請輸入您的名稱",
   "@accountNamePageTitle": {
     "description": "Account name page heading"
