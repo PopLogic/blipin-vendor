@@ -132,6 +132,35 @@
   "@goHomeButton": {
     "description": "Go home button text"
   },
+  "createFoodTruckTitle": "Create Your Food Truck",
+  "foodTruckInformationSection": "Food Truck Information",
+  "foodTruckNameLabel": "Food truck name",
+  "foodTruckNameHint": "Enter the food truck name",
+  "foodTruckIntroductionLabel": "Introduction",
+  "foodTruckIntroductionHint": "Briefly describe your food truck",
+  "foodTruckBusinessTypeLabel": "Business type",
+  "foodTruckBusinessTypeHint": "Select a business type",
+  "foodTruckBrandInformationSection": "Brand Information",
+  "foodTruckSocialLabel": "Social media",
+  "foodTruckLineHint": "Enter your Line link",
+  "foodTruckInstagramHint": "Enter your Instagram link",
+  "foodTruckFacebookHint": "Enter your Facebook link",
+  "foodTruckOtherSocialHint": "Enter another social media link",
+  "foodTruckBrandLogoLabel": "Brand logo",
+  "foodTruckBrandCoverLabel": "Brand cover",
+  "foodTruckGalleryLabel": "Gallery",
+  "foodTruckUploadRule": "Upload a JPG or PNG, up to 10 MB",
+  "foodTruckUploadLogoButton": "Upload logo",
+  "foodTruckUploadCoverButton": "Upload cover",
+  "foodTruckCoverDescription": "The first image will be displayed on the home page",
+  "foodTruckCoverCount": "({count}/3)",
+  "@foodTruckCoverCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "foodTruckGalleryCount": "({count}/10)",
+  "@foodTruckGalleryCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
   "homeCreateFirstTruckTitle": "Create your first food truck!",
   "homeCreateFirstTruckSubtitle": "Create it to unlock other features",
   "homeCreateTruckButton": "Create food truck",

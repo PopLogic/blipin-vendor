@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:blipin_vendor/generated/app_localizations.dart';
+import 'package:blipin_vendor/pages/create_food_truck_page/create_food_truck_page.dart';
 import 'package:blipin_vendor/pages/create_menu_success_page/create_menu_success_page.dart';
 import 'package:blipin_vendor/pages/launcher_page/launcher_page.dart';
 
@@ -71,5 +72,28 @@ void main() {
     expect(find.byType(LauncherPage), findsOneWidget);
     final launcherContext = tester.element(find.byType(LauncherPage));
     expect(Navigator.canPop(launcherContext), isFalse);
+  });
+
+  testWidgets('launcher opens the create food truck page', (tester) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(375, 812);
+    addTearDown(tester.view.reset);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('zh'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const LauncherPage(),
+      ),
+    );
+
+    await tester.tap(find.byKey(const Key('create-truck-button')));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(CreateFoodTruckPage), findsOneWidget);
+    expect(find.text('建立您的攤車'), findsOneWidget);
+    expect(find.text('攤車資訊'), findsOneWidget);
+    expect(find.text('請輸入攤車名稱'), findsOneWidget);
   });
 }
