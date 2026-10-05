@@ -12,6 +12,10 @@ concurrency:
 
 env:
   DEPLOY_ENV: staging
+  # Keep Ruby gems inside the checked-out project. The self-hosted runner's
+  # Homebrew gem directory is not writable by the Actions runner user.
+  BUNDLE_PATH: vendor/bundle
+  BUNDLE_DISABLE_SHARED_GEMS: "true"
 
 jobs:
   build:
@@ -84,7 +88,6 @@ jobs:
       - name: Install Fastlane
         working-directory: android
         run: |
-          gem install bundler
           bundle install
 
       - name: Upload to Firebase
